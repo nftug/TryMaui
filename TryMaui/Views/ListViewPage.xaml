@@ -8,34 +8,38 @@
         <vm:ListViewPageViewModel />
     </ContentPage.BindingContext>
 
-    <FlexLayout Direction="Column">
+    <StackLayout>
         <Label Text="{Binding SelectedItem.Value.Name}" />
-        <Button Text="Add" Command="{Binding ClickAddButtonCommand}" />
 
-        <FlexLayout FlexLayout.Grow="1" Margin="2">
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem.Value}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <Grid ColumnSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <ListView ItemsSource="{Binding Items2}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </FlexLayout>
-    </FlexLayout>
+            <Button Grid.Column="0"
+                    Text="Add"
+                    Command="{Binding ClickAddButtonCommand}" />
+            <Button Grid.Column="1"
+                    Text="Remove"
+                    Command="{Binding ClickRemoveButtonCommand}"
+                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}" />
+        </Grid>
+
+        <ListView ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem.Value}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Name}" FontSize="24" FontAttributes="Bold" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
