@@ -47,7 +47,6 @@ public class ListViewPageViewModel : ViewModelBase
 #else
             Items.RemoveOnScheduler(SelectedItem.Value);
 #endif
-
             SelectedItem.Value = null;
         });
     }
