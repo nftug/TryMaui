@@ -24,9 +24,9 @@ public class MainPageViewModel : ViewModelBase
             .Where(x => x > 0)
             .Select(x => x switch
             {
-                int n when n % 15 == 0 => "FizzBuzz",
-                int n when n % 3 == 0 => "Fizz",
-                int n when n % 5 == 0 => "Buzz",
+                _ when x % 15 == 0 => "FizzBuzz",
+                _ when x % 3 == 0 => "Fizz",
+                _ when x % 5 == 0 => "Buzz",
                 _ => x.ToString()
             })
             .ToReadOnlyReactivePropertySlim(initialValue: string.Empty);
