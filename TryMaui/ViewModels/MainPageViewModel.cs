@@ -6,7 +6,7 @@ using TryMaui.Shared;
 
 namespace TryMaui.ViewModels;
 
-public class MainPageViewModel : ViewModelBase
+public class MainPageViewModel : BindableBase
 {
     public ReactivePropertySlim<int> Count { get; }
     public ReactivePropertySlim<string> CounterButtonText { get; }
@@ -29,7 +29,8 @@ public class MainPageViewModel : ViewModelBase
                 _ when x % 5 == 0 => "Buzz",
                 _ => x.ToString()
             })
-            .ToReadOnlyReactivePropertySlim(initialValue: string.Empty);
+            .ToReadOnlyReactivePropertySlim(initialValue: string.Empty)
+            .AddTo(Disposable);
     }
 
     public void OnCounterClicked()

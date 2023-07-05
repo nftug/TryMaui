@@ -3,7 +3,7 @@ using System.Reactive.Disposables;
 
 namespace TryMaui.Shared;
 
-public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
+public abstract class BindableBase : INotifyPropertyChanged, IDisposable
 {
     private bool disposedValue;
 

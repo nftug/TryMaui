@@ -11,6 +11,9 @@
         <Tab Title="List">
             <ShellContent ContentTemplate="{DataTemplate views:ListViewPage}" Route="ListViewPage" />
         </Tab>
+        <Tab Title="Test">
+            <ShellContent ContentTemplate="{DataTemplate views:TestViewPage}" Route="TestViewPage" />
+        </Tab>
     </TabBar>
 
 </Shell>

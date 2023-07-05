@@ -7,7 +7,7 @@ using TryMaui.Shared;
 
 namespace TryMaui.ViewModels;
 
-public class ListViewPageViewModel : ViewModelBase
+public class ListViewPageViewModel : BindableBase
 {
     public List<string> Source { get; set; }
     public ReactiveCollection<ListItem> Items { get; set; }
@@ -16,6 +16,7 @@ public class ListViewPageViewModel : ViewModelBase
 
     public ICommand ClickAddButtonCommand { get; }
     public ICommand ClickRemoveButtonCommand { get; }
+    public ICommand ClickEditButtonCommand { get; }
 
     public ListViewPageViewModel()
     {
@@ -49,6 +50,21 @@ public class ListViewPageViewModel : ViewModelBase
 #endif
             SelectedItem.Value = null;
         });
+
+        ClickEditButtonCommand = new Command(async () =>
+        {
+            if (SelectedItem.Value is null) return;
+
+            var promptResult = await Application.Current!.MainPage!.DisplayActionSheet(
+                "Select language",
+                "Cancel",
+                null,
+                Source.ToArray()
+            );
+
+            // var item = Items.First(x => x.Id == SelectedItem.Value.Id);
+            SelectedItem.Value.Name.Value = promptResult;
+        });
     }
 
     private async void OnAddButtonClicked()
@@ -59,7 +75,8 @@ public class ListViewPageViewModel : ViewModelBase
             null,
             Source.ToArray()
         );
-        var item = new ListItem(promptResult);
+        var item = new ListItem();
+        item.Name.Value = promptResult;
 
         if (item != null) Items.AddOnScheduler(item);
     }

@@ -9,12 +9,13 @@
     </ContentPage.BindingContext>
 
     <StackLayout>
-        <Label Text="{Binding SelectedItem.Value.Name}" />
+        <Label Text="{Binding SelectedItem.Value.Name.Value}" />
 
         <Grid ColumnSpacing="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -27,6 +28,10 @@
                     Text="Remove"
                     Command="{Binding ClickRemoveButtonCommand}"
                     IsEnabled="{Binding IsRemoveButtonEnabled.Value}" />
+            <Button Grid.Column="2"
+                    Text="Edit"
+                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}"
+                    Command="{Binding ClickEditButtonCommand}" />
         </Grid>
 
         <ListView ItemsSource="{Binding Items}"
@@ -35,7 +40,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
-                            <Label Text="{Binding Name}" FontSize="24" FontAttributes="Bold" />
+                            <Label Text="{Binding Name.Value}" FontSize="24" FontAttributes="Bold" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
