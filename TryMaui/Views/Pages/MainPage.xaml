@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:TryMaui.ViewModels"
-             x:Class="TryMaui.Views.MainPage"
+             xmlns:vm="clr-namespace:TryMaui.ViewModels.Pages"
+             x:Class="TryMaui.Views.Pages.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              Title="Home">
 
@@ -10,11 +10,14 @@
         <vm:MainPageViewModel/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
             <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
@@ -31,7 +34,6 @@
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App UI"
-                FontSize="18"
                 HorizontalOptions="Center" />
 
             <Button
@@ -43,10 +45,11 @@
             <Label
                 Text="{Binding FizzBuzzText.Value}"
                 HorizontalOptions="Center"
-                Margin="10"
-                FontSize="18"/>
+                Margin="10"/>
 
+            <Label
+                Text="{Binding TickCounterText.Value}"
+                HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

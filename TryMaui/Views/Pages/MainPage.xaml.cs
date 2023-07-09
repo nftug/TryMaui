@@ -1,4 +1,4 @@
-﻿namespace TryMaui.Views;
+﻿namespace TryMaui.Views.Pages;
 
 public partial class MainPage : ContentPage
 {

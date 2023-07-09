@@ -52,14 +52,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\HelloPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ListViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
+	  <None Remove="Views\Controls\" />
+	  <None Remove="ViewModels\Pages\" />
+	  <None Remove="ViewModels\Global\" />
+	  <None Remove="Views\Pages\" />
 	</ItemGroup>
-
+	<ItemGroup>
+	  <Folder Include="Views\Controls\" />
+	  <Folder Include="ViewModels\Pages\" />
+	  <Folder Include="ViewModels\Global\" />
+	  <Folder Include="Views\Pages\" />
+	</ItemGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
     <AndroidKeyStore>True</AndroidKeyStore>
@@ -68,4 +71,10 @@
     <AndroidSigningKeyPass></AndroidSigningKeyPass>
     <AndroidSigningStorePass></AndroidSigningStorePass>
   </PropertyGroup>
+
+ 
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'maccatalyst-arm64' and '$(Configuration)' == 'Release'">
+    <UseInterpreter>true</UseInterpreter>
+  </PropertyGroup>
+
 </Project>

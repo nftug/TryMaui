@@ -5,7 +5,7 @@ using Reactive.Bindings.Extensions;
 using TryMaui.Models;
 using TryMaui.Shared;
 
-namespace TryMaui.ViewModels;
+namespace TryMaui.ViewModels.Pages;
 
 public class ListViewPageViewModel : BindableBase
 {

@@ -7,6 +7,7 @@ namespace TryMaui.Models;
 
 public class TestItem : BindableBase
 {
+    public Guid Id { get; } = Guid.NewGuid();
     public ReactivePropertySlim<DateTime?> StartedOn { get; }
     public ReadOnlyReactivePropertySlim<TimeSpan> Duration { get; }
     public ReadOnlyReactivePropertySlim<string?> DisplayText { get; }
@@ -18,14 +19,14 @@ public class TestItem : BindableBase
         // timerのかわりにObservable.Interval()をSubscribeすると、個々のインスタンスでタイマーを生成する
         Duration = timer
             .CombineLatest(StartedOn, (_, s) => (_, s))
-            .Where(x => x.s != null)
             .Select(x => DateTime.Now - x.s ?? TimeSpan.Zero)
-            .ToReadOnlyReactivePropertySlim();
-            // .AddTo(Disposable);
+            .ToReadOnlyReactivePropertySlim()
+            .AddTo(Disposable);
 
         DisplayText = Duration
             .Select(x => $"{x:mm\\:ss}")
-            .ToReadOnlyReactivePropertySlim();
+            .ToReadOnlyReactivePropertySlim()
+            .AddTo(Disposable);
     }
 
     public void Start()
