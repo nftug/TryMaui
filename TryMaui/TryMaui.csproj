@@ -70,11 +70,15 @@
     <AndroidSigningKeyAlias>myapp</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass></AndroidSigningKeyPass>
     <AndroidSigningStorePass></AndroidSigningStorePass>
+	<RunAOTCompilation>false</RunAOTCompilation>
+  	<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
 
- 
+
   <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'maccatalyst-arm64' and '$(Configuration)' == 'Release'">
     <UseInterpreter>true</UseInterpreter>
   </PropertyGroup>
+
+
 
 </Project>
