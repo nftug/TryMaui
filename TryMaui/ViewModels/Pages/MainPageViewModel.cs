@@ -41,6 +41,7 @@ public class MainPageViewModel : BindableBase
 
         TickCounterText = TickListViewModel.Items
             .ObserveElementObservableProperty(x => x.StartedOn)
+            .CombineLatest(TickListViewModel.Items.ToCollectionChanged())
             .Select(_ => $"{TickListViewModel.Items.Count(x => x.StartedOn.Value != null)} timers are active.")
             .ToReadOnlyReactivePropertySlim("0 timers are active.")
             .AddTo(Disposable);

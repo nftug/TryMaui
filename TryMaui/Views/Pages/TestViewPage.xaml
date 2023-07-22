@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TryMaui.ViewModels.Pages"
              xmlns:ctl="clr-namespace:TryMaui.Views.Controls"
              x:Class="TryMaui.Views.Pages.TestViewPage"
-             Title="TestViewPage" x:Name="this">
+             Title="TestViewPage"
+             x:Name="this">
     <ContentPage.BindingContext>
         <vm:TestViewPageViewModel/>
     </ContentPage.BindingContext>
-
     <ctl:TickListView BindingContext="{Binding ViewModel}"/>
 </ContentPage>

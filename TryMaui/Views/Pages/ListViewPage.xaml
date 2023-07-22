@@ -1,20 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TryMaui.Views.Pages.ListViewPage"
              xmlns:vm="clr-namespace:TryMaui.ViewModels.Pages"
-             Title="ListViewPage" Shell.NavBarIsVisible="True">
+             Title="ListViewPage"
+             Shell.NavBarIsVisible="True">
     <ContentPage.BindingContext>
-        <vm:ListViewPageViewModel />
+        <vm:ListViewPageViewModel/>
     </ContentPage.BindingContext>
-
     <Grid RowDefinitions="Auto,Auto,*">
-        <Label Grid.Row="0" Text="{Binding SelectedItem.Value.Name.Value}" />
-
-        <Grid Grid.Row="1" ColumnSpacing="2" ColumnDefinitions="*,*,*">
+        <Label Grid.Row="0"
+               Text="{Binding SelectedItem.Value.Name.Value}"/>
+        <Grid Grid.Row="1"
+              ColumnSpacing="2"
+              ColumnDefinitions="*,*,*">
             <Button Grid.Column="0"
                     Text="Add"
-                    Command="{Binding ClickAddButtonCommand}" />
+                    Command="{Binding ClickAddButtonCommand}"/>
             <Button Grid.Column="1"
                     Text="Edit"
                     Command="{Binding ClickEditButtonCommand}"
@@ -22,21 +24,22 @@
             <Button Grid.Column="2"
                     Text="Remove"
                     Command="{Binding ClickRemoveButtonCommand}"
-                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}" />
+                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}"/>
         </Grid>
-
         <CollectionView Grid.Row="2"
                         ItemsSource="{Binding Items}"
-                        SelectedItem="{Binding SelectedItem.Value}" SelectionMode="Single">
+                        SelectedItem="{Binding SelectedItem.Value}"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label Text="{Binding Name.Value}" FontSize="24" FontAttributes="Bold" />
+                        <Label Text="{Binding Name.Value}"
+                               FontSize="24"
+                               FontAttributes="Bold"/>
                         <BoxView Style="{StaticResource SeparatorStyle}"/>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
             <CollectionView.Footer>
                 <StackLayout HeightRequest="64"/>
             </CollectionView.Footer>
