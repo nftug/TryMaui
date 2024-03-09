@@ -19,6 +19,10 @@ public class MainPageViewModel : BindableBase
 
     public ReadOnlyReactivePropertySlim<string> TickCounterText { get; }
 
+#if DEBUG
+    public MainPageViewModel() : this(null!) { }
+#endif
+
     public MainPageViewModel(TickListViewModel tickListViewModel)
     {
         TickListViewModel = tickListViewModel;
@@ -45,10 +49,6 @@ public class MainPageViewModel : BindableBase
             .Select(_ => $"{TickListViewModel.Items.Count(x => x.StartedOn.Value != null)} timers are active.")
             .ToReadOnlyReactivePropertySlim("0 timers are active.")
             .AddTo(Disposable);
-    }
-
-    public MainPageViewModel() : this(AppEnvironment.Services.GetService<TickListViewModel>()!)
-    {
     }
 
     public void OnCounterClicked()

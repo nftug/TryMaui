@@ -14,13 +14,13 @@ public class ListViewPageViewModel : BindableBase
     public ReactivePropertySlim<ListItem?> SelectedItem { get; }
     public ReadOnlyReactivePropertySlim<bool> IsRemoveButtonEnabled { get; }
 
-    public ICommand ClickAddButtonCommand { get; }
+    public ReactiveCommandSlim ClickAddButtonCommand { get; }
     public ICommand ClickRemoveButtonCommand { get; }
     public ICommand ClickEditButtonCommand { get; }
 
     public ListViewPageViewModel()
     {
-        Source = new List<string>
+        Source = new()
         {
             new("C#"), new("Visual Basic"), new("F#"),
             new("Java"), new("Kotlin"), new("Swift"),
@@ -34,7 +34,7 @@ public class ListViewPageViewModel : BindableBase
             .ToReadOnlyReactivePropertySlim()
             .AddTo(Disposable);
 
-        ClickAddButtonCommand = new Command(OnAddButtonClicked);
+        ClickAddButtonCommand = new ReactiveCommandSlim().WithSubscribe(OnAddButtonClicked).AddTo(Disposable);
         ClickRemoveButtonCommand = new Command(() =>
         {
             if (SelectedItem.Value is null) return;
@@ -75,6 +75,8 @@ public class ListViewPageViewModel : BindableBase
             null,
             Source.ToArray()
         );
+        if (!Source.Contains(promptResult)) return;
+
         var item = new ListItem();
         item.Name.Value = promptResult;
 

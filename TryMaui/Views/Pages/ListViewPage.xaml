@@ -6,25 +6,20 @@
              Title="ListViewPage"
              Shell.NavBarIsVisible="True">
     <ContentPage.BindingContext>
-        <vm:ListViewPageViewModel/>
+        <vm:ListViewPageViewModel />
     </ContentPage.BindingContext>
     <Grid RowDefinitions="Auto,Auto,*">
-        <Label Grid.Row="0"
-               Text="{Binding SelectedItem.Value.Name.Value}"/>
-        <Grid Grid.Row="1"
-              ColumnSpacing="2"
-              ColumnDefinitions="*,*,*">
-            <Button Grid.Column="0"
-                    Text="Add"
-                    Command="{Binding ClickAddButtonCommand}"/>
+        <Label Grid.Row="0" Text="{Binding SelectedItem.Value.Name.Value}" />
+        <Grid Grid.Row="1" ColumnSpacing="2" ColumnDefinitions="*,*,*">
+            <Button Grid.Column="0" Text="Add" Command="{Binding ClickAddButtonCommand}" />
             <Button Grid.Column="1"
                     Text="Edit"
                     Command="{Binding ClickEditButtonCommand}"
-                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}"/>
+                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}" />
             <Button Grid.Column="2"
                     Text="Remove"
                     Command="{Binding ClickRemoveButtonCommand}"
-                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}"/>
+                    IsEnabled="{Binding IsRemoveButtonEnabled.Value}" />
         </Grid>
         <CollectionView Grid.Row="2"
                         ItemsSource="{Binding Items}"
@@ -33,15 +28,13 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label Text="{Binding Name.Value}"
-                               FontSize="24"
-                               FontAttributes="Bold"/>
-                        <BoxView Style="{StaticResource SeparatorStyle}"/>
+                        <Label Text="{Binding Name.Value}" FontSize="24" FontAttributes="Bold" />
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.Footer>
-                <StackLayout HeightRequest="64"/>
+                <StackLayout HeightRequest="64" />
             </CollectionView.Footer>
         </CollectionView>
     </Grid>

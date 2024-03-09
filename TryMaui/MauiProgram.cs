@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using TryMaui.ViewModels.Global;
+using TryMaui.ViewModels.Pages;
+using TryMaui.Views.Pages;
 
 namespace TryMaui;
 
@@ -20,9 +22,10 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<MainPageViewModel>();
 		builder.Services.AddSingleton<TickListViewModel>();
 
 		return builder.Build();
 	}
 }
-
